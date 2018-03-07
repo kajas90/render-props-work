@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+const timeout = (ms) => new Promise(resolve => setTimeout(resolve, ms))
+
 export class MyComponent extends Component {
 
     static propTypes = {
@@ -20,6 +22,9 @@ export class MyComponent extends Component {
     getData = async () => {
       const response = await fetch(this.props.path)
       const data = await response.json()
+
+      await timeout(500)
+      
       this.setState({ data, loading: false})
     }
 
